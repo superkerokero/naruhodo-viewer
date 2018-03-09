@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ static_url('css/custom.css') }}">
+    <title>naruhodo viewer</title>
+
+    <!-- vis.js CSS&JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.20.1/vis.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.20.1/vis.min.css">
+    <script src="{{ static_url('js/pace.min.js') }}"></script>
+    <link href="{{ static_url('css/pace-theme.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputBox" placeholder="Add text to the graph">
+                    <span class="input-group-addon">
+                        <button id="addBtn" type="submit" class="btn btn-danger btn-xs">ADD</button>
+                    </span>
+                </div>
+                <div id="graph"></div>
+            </div>
+            <div id="config" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group-vertical" role="group">
+                    <div class="btn-group" role="group">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="gtypeCtrl" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                KSG
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="gtypeCtrl">
+                                <button type="button" id="gtypeCtrl-ksg" class="dropdown-item btn">KSG</button>
+                                <button type="button" id="gtypeCtrl-dsg" class="dropdown-item btn">DSG</button>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" id="modeCtrl" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Text
+                        </button>
+                            <div class="dropdown-menu" aria-labelledby="modeCtrl">
+                                <button type="button" id="modeCtrl-text" class="dropdown-item btn">Text</button>
+                                <button type="button" id="modeCtrl-url" class="dropdown-item btn">Url</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="langCtrl" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Japanese
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="langCtrl">
+                            <button type="button" id="langCtrl-ja" class="dropdown-item btn">Japanese</button>
+                        </div>
+                    </div>
+                    <button type="button" id="resetBtn" class="btn btn-secondary">Reset</button>
+                    <button type="button" id="setBtn" class="btn">Settings</button>
+                </div>
+            </div>
+        </div>
+        <div id="loadingCard" style="width: 18rem;">
+            <img src="{{ static_url('img/loading.gif') }}">
+        </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <script src="{{ static_url('js/custom.js') }}"></script>
+</body>
+
+</html>

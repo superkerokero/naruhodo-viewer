@@ -1,0 +1,24 @@
+#graph {
+    height: 95vh;
+}
+
+#config {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#modeCtrl,
+#langCtrl,
+#gtypeCtrl,
+#resetBtn {
+    visibility: hidden;
+}
+
+#loadingCard {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
