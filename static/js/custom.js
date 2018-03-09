@@ -128,7 +128,7 @@
    var NodeType2BGColor = {
        '-1': '#e5ffaa',
        '0': '#e5ffaa',
-       '1': '#e5ffaa',
+       '1': '#0000aa',
        '2': '#aa00aa',
        '3': '#e5ffaa',
        '4': '#e5ffaa',
@@ -164,7 +164,7 @@
    var NodeType2FontColor = {
        '-1': '#000000',
        '0': '#000000',
-       '1': '#000000',
+       '1': '#ffffff',
        '2': '#ffffff',
        '3': '#000000',
        '4': '#000000',
@@ -242,7 +242,7 @@
            "reset": reset
        };
        $.ajax({
-           url: "http://superkerokero.ddns.net:8000",
+           url: "http://192.168.1.4:8000",
            type: "POST",
            data: JSON.stringify(data),
            contentType: 'application/json',

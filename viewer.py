@@ -46,7 +46,7 @@ if __name__ == '__main__':
     with open("config.json") as json_data:
         config = json.load(json_data)
     app = Application(config['debug'])
-    gclient = parser()
+    gclient = parser(mp=False)
     server = tornado.httpserver.HTTPServer(app)
     server.listen(8000)
     tornado.ioloop.IOLoop.instance().start()
