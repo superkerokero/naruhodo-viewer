@@ -1,4 +1,5 @@
 {
-    "model": "word2vec.gensim.model",
-    "debug": true
+    "mp": false,
+    "wv": "",
+    "debug": false
 }

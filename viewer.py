@@ -15,18 +15,19 @@ class ViewerHandler(tornado.web.RequestHandler):
 
     def post(self, *args, **kwargs):
         data = json.loads(self.request.body.decode('utf-8'))
+        texts = None
         if data['lang'] != gclient.lang or data['gtype'] != gclient.gtype:
             gclient.change(data['lang'], data['gtype'])
         if data['reset']:
             gclient.reset()
             print("Reset the graph!")
         elif data['mode'] == 'text':
-            gclient.add(data['inp'])
+            texts = gclient.add(data['inp'])
         elif data['mode'] == 'url':
-            gclient.addUrls(data['inp'])
+            texts = gclient.addUrls(data['inp'])
         else:
             raise ValueError("Unrecognized mode: {0}".format(data['mode']))
-        response = gclient.exportObj()
+        response = gclient.exportObj(texts)
         self.write(json.dumps(response))
 
 class Application(tornado.web.Application):
@@ -46,7 +47,7 @@ if __name__ == '__main__':
     with open("config.json") as json_data:
         config = json.load(json_data)
     app = Application(config['debug'])
-    gclient = parser(mp=False)
+    gclient = parser(mp=config['mp'], wv=config['wv'])
     server = tornado.httpserver.HTTPServer(app)
     server.listen(8000)
     tornado.ioloop.IOLoop.instance().start()

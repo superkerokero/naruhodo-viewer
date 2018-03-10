@@ -8,8 +8,16 @@
     left: 0;
 }
 
+#hierarchicalConfig {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 #modeCtrl,
 #langCtrl,
+#layoutCtrl,
 #gtypeCtrl,
 #resetBtn {
     visibility: hidden;

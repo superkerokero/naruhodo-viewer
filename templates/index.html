@@ -25,12 +25,13 @@
         <div class="row no-gutters">
             <div class="col-12">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputBox" placeholder="Add text to the graph">
+                    <input type="text" class="form-control" id="inputBox" placeholder="Add text to the graph" data-toggle="popover" data-trigger="hover" title="Input bar" data-content="If 'mode' is set to 'Text', type text here to add it to the graph. If 'mode' is set to 'Url', type url of the webpage to add the content of the webpage to the graph."
+                        data-placement="auto">
                     <span class="input-group-addon">
-                        <button id="addBtn" type="submit" class="btn btn-danger btn-xs">ADD</button>
+                        <button id="addBtn" type="submit" class="btn btn-danger btn-xs" data-toggle="popover" data-trigger="hover" title="Add button" data-content="Click here to add the content in input bar to graph." data-placement="auto">ADD</button>
                     </span>
                 </div>
-                <div id="graph"></div>
+                <div id="graph" data-toggle="popover" data-trigger="hover" title="Graph viewer" data-content="This place is where your semantic graph gets visualized." data-placement="auto"></div>
             </div>
             <div id="config" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group-vertical" role="group">
@@ -40,17 +41,17 @@
                                 KSG
                             </button>
                             <div class="dropdown-menu" aria-labelledby="gtypeCtrl">
-                                <button type="button" id="gtypeCtrl-ksg" class="dropdown-item btn">KSG</button>
-                                <button type="button" id="gtypeCtrl-dsg" class="dropdown-item btn">DSG</button>
+                                <button type="button" id="gtypeCtrl-ksg" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Knowledge structure graph" data-content="Click here to change the graph mode to 'KSG', the knowledge structure graph." data-placement="auto">KSG</button>
+                                <button type="button" id="gtypeCtrl-dsg" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Dependency structure graph" data-content="Click here to change the graph mode to 'DSG', the dependency structure graph." data-placement="auto">DSG</button>
                             </div>
                         </div>
                         <div class="btn-group" role="group">
                             <button type="button" id="modeCtrl" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Text
-                        </button>
+                                Text
+                            </button>
                             <div class="dropdown-menu" aria-labelledby="modeCtrl">
-                                <button type="button" id="modeCtrl-text" class="dropdown-item btn">Text</button>
-                                <button type="button" id="modeCtrl-url" class="dropdown-item btn">Url</button>
+                                <button type="button" id="modeCtrl-text" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Text mode" data-content="Click here to change the add mode to 'Text'." data-placement="auto">Text</button>
+                                <button type="button" id="modeCtrl-url" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Url mode" data-content="Click here to change the add mode to 'Url'." data-placement="auto">Url</button>
                             </div>
                         </div>
                     </div>
@@ -59,11 +60,44 @@
                                 Japanese
                         </button>
                         <div class="dropdown-menu" aria-labelledby="langCtrl">
-                            <button type="button" id="langCtrl-ja" class="dropdown-item btn">Japanese</button>
+                            <button type="button" id="langCtrl-ja" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Japanese" data-content="Click here to change the target language to Japanese." data-placement="auto">Japanese</button>
                         </div>
                     </div>
-                    <button type="button" id="resetBtn" class="btn btn-secondary">Reset</button>
-                    <button type="button" id="setBtn" class="btn">Settings</button>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="layoutCtrl" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Force-directed
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="layoutCtrl">
+                            <button type="button" id="layoutCtrl-force" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Force-directed layout" data-content="Click here to change the layout mode of the graph to 'Force-directed'." data-placement="auto">Force-directed</button>
+                            <button type="button" id="layoutCtrl-hierarchical" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Hierarchical layout" data-content="Click here to change the layout mode of the graph to 'Hierarchical'." data-placement="auto">Hierarchical</button>
+                        </div>
+                    </div>
+                    <button type="button" id="resetBtn" class="btn btn-secondary" data-toggle="popover" data-trigger="hover" title="Reset button" data-content="Click here to reset the graph. This will clear all contents in the graph viewer." data-placement="auto">Reset</button>
+                    <button type="button" id="setBtn" class="btn btn-light" data-toggle="popover" data-trigger="hover" title="Setting button" data-content="Click here to toggle settings memu.">Settings</button>
+                </div>
+            </div>
+        </div>
+        <div id="hierarchicalConfig" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group-vertical" role="group">
+                <div class="btn-group" role="group">
+                    <button type="button" id="layoutDirectionCtrl" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                RL
+                        </button>
+                    <div class="dropdown-menu" aria-labelledby="layoutDirectionCtrl">
+                        <button type="button" id="layoutDirectionCtrl-UD" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Up-Down direction" data-content="Click here to change hierarchical direction to Up-Down." data-placement="auto">UD</button>
+                        <button type="button" id="layoutDirectionCtrl-DU" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Down-Up direction" data-content="Click here to change hierarchical direction to Down-Up." data-placement="auto">DU</button>
+                        <button type="button" id="layoutDirectionCtrl-LR" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Left-Right direction" data-content="Click here to change hierarchical direction to Left-Right." data-placement="auto">LR</button>
+                        <button type="button" id="layoutDirectionCtrl-RL" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Right-Left direction" data-content="Click here to change hierarchical direction to Right-Left." data-placement="auto">RL</button>
+                    </div>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="layoutSortCtrl" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Directed
+                            </button>
+                    <div class="dropdown-menu" aria-labelledby="layoutSortCtrl">
+                        <button type="button" id="layoutSortCtrl-hubsize" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="HubSize sort method" data-content="Click here to change hierarchical sort method to 'hubsize'." data-placement="auto">HubSize</button>
+                        <button type="button" id="layoutSortCtrl-directed" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Directed sort method" data-content="Click here to change hierarchical sort method to 'directed'." data-placement="auto">Directed</button>
+                    </div>
                 </div>
             </div>
         </div>
