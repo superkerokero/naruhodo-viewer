@@ -48,7 +48,7 @@ http://localhost:8000
 
 ## Basic-Usage
 
-You can use the input bar to enter text to want to add to graph and click `ADD` button to apply the change..
+You can use the input bar to enter text you want to add to the graph and click `ADD` button to apply the change..
 
 ![Input bar](img/snapshot2.png)
 
@@ -60,6 +60,6 @@ When you move your cursor over a node in the graph(or touch a node on mobile dev
 
 ![Node popup](img/snapshot4.png)
 
-Tou can also add contents of webpages into graph directly using `naruhodo`'s built-in scaraper. But be careful with large amount of texts, too many nodes and edges in the graph will degrade the webapp's performance greatly.
+You can also add contents of webpages into graph directly using `naruhodo`'s built-in scaraper. But be careful with large amount of texts, too many nodes and edges in the graph will degrade the webapp's performance greatly.
 
 ![Webpage added to graph](img/snapshot5.png)
