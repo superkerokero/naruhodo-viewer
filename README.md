@@ -40,7 +40,7 @@ Next, open a terminal from the root folder of the repository, and use the follow
 python viewer.py
 ```
 
-Now you can open your browser and enter the following address to use the app.
+Now you can open your browser and go to the following address to use the app.
 
 ```
 http://localhost:8000
@@ -48,7 +48,7 @@ http://localhost:8000
 
 ## Basic-Usage
 
-You can use the input bar to enter text you want to add to the graph and click `ADD` button to apply the change..
+You can use the input bar to add contents to the graph.
 
 ![Input bar](img/snapshot2.png)
 
@@ -56,7 +56,7 @@ Use `Setting` button to toggle setting menu.
 
 ![Setting button](img/snapshot3.png)
 
-When you move your cursor over a node in the graph(or touch a node on mobile devices), the following popup will show you the original text that contains this node.
+When you move your cursor over a node in the graph(or touch a node on mobile devices), a popup window will show you the original text that contains this node and its relative position in the input context.
 
 ![Node popup](img/snapshot4.png)
 
