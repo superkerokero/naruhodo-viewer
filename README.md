@@ -2,6 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+[日本語はこちら](README-ja.md)
+
 A web application for interactive visualization of semantic graphs generated from [naruhodo](https://github.com/superkerokero/naruhodo).
 
 ![A snapshot of naruhodo-viewer webapp](img/snapshot1.png)
