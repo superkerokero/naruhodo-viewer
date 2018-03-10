@@ -32,7 +32,7 @@ git clone https://github.com/superkerokero/naruhodo-viewer.git
 
 `naruhodo` に実装された試験的な共参照解析機能を利用するには、`wv` を word2vec のモデルにパスに変える必要があります。word2vec のモデルがなければ、"" のままで結構です。
 
-`debug` を `true`　にするとdebug機能を利用します。
+`debug` を `true`　にするとdebug機能を利用します。
 
 次にルートフォルダに移動してターミナルを開き、このコマンドでウェブサーバーを起動します:
 
@@ -40,7 +40,7 @@ git clone https://github.com/superkerokero/naruhodo-viewer.git
 python viewer.py
 ```
 
-これでブラウザでこのアドレスから `naruhodo-viewer` にアクセスします。
+これでブラウザでこのアドレスから `naruhodo-viewer` にアクセスします。
 
 ```
 http://localhost:8000
@@ -52,11 +52,11 @@ http://localhost:8000
 
 ![Input bar](img/snapshot2.png)
 
-`Setting` ボタンで設定メニューを表示させます。
+`Setting` ボタンで設定メニューを表示させます。
 
 ![Setting button](img/snapshot3.png)
 
-ノードにマウスポインターを移動すれば（モバイルデバイスならノードにタップ）、ノードの情報が含まれるオリジナルのテキストが見れます。
+ノードにマウスポインターを移動すれば（モバイルデバイスならノードにタップ）、ノードの情報が含まれるオリジナルのテキストが見れます。
 
 ![Node popup](img/snapshot4.png)
 
