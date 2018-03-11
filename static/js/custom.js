@@ -18,7 +18,7 @@ function custom() {
                 max: 50,
                 label: {
                     enabled: true,
-                    min: 10,
+                    min: 5,
                     max: 15,
                     maxVisible: 30,
                     drawThreshold: 5
