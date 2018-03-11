@@ -59,7 +59,7 @@ When you move your cursor over a node in the graph(or touch a node on mobile dev
 
 ![Node popup](img/snapshot4.png)
 
-You can also add contents of webpages into graph directly using `naruhodo`'s built-in scaraper. But be careful with large amount of texts, too many nodes and edges in the graph will degrade the webapp's performance greatly.
+You can also add contents of webpages into graph directly using `naruhodo`'s built-in scraper. But please be careful with large amount of texts, since too many nodes and edges in the graph will degrade the webapp's performance significantly.
 
 ![Webpage added to graph](img/snapshot5.png)
 
