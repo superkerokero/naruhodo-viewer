@@ -102,3 +102,4 @@ ENV/
 
 # custom configs
 config_debug.json
+config_deploy.json
