@@ -23,8 +23,7 @@ Go to the directory of the app you have cloned, and edit `config.json` file in t
 ```json
 {
     "mp": false,
-    "wv": "",
-    "debug": false
+    "wv": ""
 }
 ```
 
@@ -32,12 +31,12 @@ If `mp` is set to `true`, `naruhodo` will be run in multiprocessing mode(may pro
 
 If you want to use experimental coreference resolution function in `naruhodo` based on word embeddings, you need to change `wv` to the string of your word2vec model path. Otherwise leave it as an empty string.
 
-If you need debugging, change `debug` to `true`.
+A complete list of available config parameters and corresponding default values can be found in [config-parameters](#Config-parameters) section.
 
 Next, open a terminal from the root folder of the repository, and use the following command to start the web server:
 
 ```bash
-python viewer.py
+python viewer.py config.json
 ```
 
 Now you can open your browser and go to the following address to use the app.
@@ -63,3 +62,13 @@ When you move your cursor over a node in the graph(or touch a node on mobile dev
 You can also add contents of webpages into graph directly using `naruhodo`'s built-in scaraper. But be careful with large amount of texts, too many nodes and edges in the graph will degrade the webapp's performance greatly.
 
 ![Webpage added to graph](img/snapshot5.png)
+
+## Config-parameters
+
+| name        | default            | description                                 |
+|-------------|--------------------|---------------------------------------------|
+| mp          | false              | Use multiprocessing in naruhodo or not.     |
+| wv          | ""                 | Path to your word2vec model.                |
+| debug       | false              | Debug mode                                  |
+| server_ip   | "http://localhost" | IP address of your naruhodo-viewer server.  |
+| server_port | 8000               | Port number of your naruhodo-viewer server. |

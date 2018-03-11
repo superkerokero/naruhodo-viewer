@@ -32,15 +32,15 @@ git clone https://github.com/superkerokero/naruhodo-viewer.git
 
 `naruhodo` に実装された試験的な共参照解析機能を利用するには、`wv` を word2vec のモデルにパスに変える必要があります。word2vec のモデルがなければ、"" のままで結構です。
 
-`debug` を `true`　にするとdebug機能を利用します。
+全ての使えるオプションは[オプション](#オプション)セクションで確認できます。
 
 次にルートフォルダに移動してターミナルを開き、このコマンドでウェブサーバーを起動します:
 
 ```bash
-python viewer.py
+python viewer.py config.json
 ```
 
-これでブラウザでこのアドレスから `naruhodo-viewer` にアクセスします。
+ブラウザでこのアドレスから `naruhodo-viewer` にアクセスします。
 
 ```
 http://localhost:8000
@@ -63,3 +63,13 @@ http://localhost:8000
 `naruhodo`のスクレーパー機能を利用して、直接ウェブぺージの内容をグラフに追加できます。ただグラフのノード数が大きすぎると性能が著しく落ちますので、注意が必要です。
 
 ![Webpage added to graph](img/snapshot5.png)
+
+## オプション
+
+| name        | default            | description                                 |
+|-------------|--------------------|---------------------------------------------|
+| mp          | false              | Use multiprocessing in naruhodo or not.     |
+| wv          | ""                 | Path to your word2vec model.                |
+| debug       | false              | Debug mode                                  |
+| server_ip   | "http://localhost" | IP address of your naruhodo-viewer server.  |
+| server_port | 8000               | Port number of your naruhodo-viewer server. |

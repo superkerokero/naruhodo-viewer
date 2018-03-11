@@ -11,7 +11,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ static_url('css/custom.css') }}">
     <title>naruhodo viewer</title>
-    <link rel="icon" href="{{ static_url('img/loading.gif') }}">
+    <link rel="icon" href="{{ static_url('img/icon.png') }}">
 
     <!-- vis.js CSS&JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.20.1/vis.min.js"></script>
@@ -25,6 +25,9 @@
         <div class="row no-gutters">
             <div class="col-12">
                 <div class="input-group">
+                    <span class="input-group-addon">
+                        <button id="helpBtn" type="button" class="btn btn-warning btn-xs" data-toggle="popover" data-trigger="hover" title="Toggle help" data-content="Click here to toggle help popup windows." data-placement="auto">?</button>
+                    </span>
                     <input type="text" class="form-control" id="inputBox" placeholder="Add text to the graph" data-toggle="popover" data-trigger="hover" title="Input bar" data-content="If 'mode' is set to 'Text', type text here to add it to the graph. If 'mode' is set to 'Url', type url of the webpage to add the content of the webpage to the graph."
                         data-placement="auto">
                     <span class="input-group-addon">
@@ -73,7 +76,7 @@
                         </div>
                     </div>
                     <button type="button" id="resetBtn" class="btn btn-secondary" data-toggle="popover" data-trigger="hover" title="Reset button" data-content="Click here to reset the graph. This will clear all contents in the graph viewer." data-placement="auto">Reset</button>
-                    <button type="button" id="setBtn" class="btn btn-light" data-toggle="popover" data-trigger="hover" title="Setting button" data-content="Click here to toggle settings memu.">Settings</button>
+                    <button type="button" id="setBtn" class="btn btn-light" data-toggle="popover" data-trigger="hover" title="Setting button" data-content="Click here to toggle settings memu." data-placement="auto">Settings</button>
                 </div>
             </div>
         </div>
@@ -111,7 +114,12 @@
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <!-- Optional JavaScript -->
+    <script>
+        var server_addr = "{{ server }}";
+        console.log(server_addr);
+    </script>
     <script src="{{ static_url('js/custom.js') }}"></script>
 </body>
 

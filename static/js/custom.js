@@ -5,6 +5,7 @@ function custom() {
     };
 
     var texts = [];
+    var help = true;
 
     // takes in a json object, and initialize the network.
     var options = {
@@ -265,7 +266,7 @@ function custom() {
             "reset": reset
         };
         $.ajax({
-            url: "http://localhost:8000",
+            url: server_addr,
             type: "POST",
             data: JSON.stringify(data),
             contentType: 'application/json',
@@ -428,6 +429,17 @@ function custom() {
     // Reset button callback.
     $('#resetBtn').on('click', function(event) {
         reset();
+    });
+
+    // Toggle help button callback.
+    $('#helpBtn').on('click', function(event) {
+        if (help) {
+            $('[data-toggle="popover"]').popover('disable').popover("hide");
+            help = false;
+        } else {
+            $('[data-toggle="popover"]').popover('enable').popover("hide");
+            help = true;
+        }
     });
 
     reset();

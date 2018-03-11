@@ -1,9 +1,9 @@
 import os
+import sys
 import json
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
-import tornado.websocket
 from tornado.web import url
 import requests
 from naruhodo import parser
@@ -11,7 +11,7 @@ from naruhodo import parser
 class ViewerHandler(tornado.web.RequestHandler):
     """RESTful API handler."""
     def get(self, *args, **kwargs):
-        self.render('index.html')
+        self.render('index.html', server=cfg['server_ip']+':'+str(cfg['server_port']))
 
     def post(self, *args, **kwargs):
         data = json.loads(self.request.body.decode('utf-8'))
@@ -43,11 +43,30 @@ class Application(tornado.web.Application):
                                          debug=debug
                                     )
 
+def loadConfig(fname):
+    """Load configuration from given cfg file."""
+    if os.path.isfile(fname):
+        with open(fname) as json_data:
+            cfg = json.load(json_data)
+    else:
+        cfg = dict()
+        print("Invalid config file name. Using default configurations.")
+    if 'mp' not in cfg:
+        cfg['mp'] = False
+    if 'wv' not in cfg:
+        cfg['wv'] = ""
+    if 'debug' not in cfg:
+        cfg['debug'] = False
+    if 'server_ip' not in cfg:
+        cfg['server_ip'] = 'http://localhost'
+    if 'server_port' not in cfg:
+        cfg['server_port'] = 8000
+    return cfg
+
 if __name__ == '__main__':
-    with open("config.json") as json_data:
-        config = json.load(json_data)
-    app = Application(config['debug'])
-    gclient = parser(mp=config['mp'], wv=config['wv'])
+    cfg = loadConfig(sys.argv[1])
+    app = Application(cfg['debug'])
+    gclient = parser(mp=cfg['mp'], wv=cfg['wv'])
     server = tornado.httpserver.HTTPServer(app)
-    server.listen(8000)
+    server.listen(cfg['server_port'])
     tornado.ioloop.IOLoop.instance().start()
