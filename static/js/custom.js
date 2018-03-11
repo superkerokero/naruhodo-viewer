@@ -133,14 +133,14 @@ function custom() {
 
     // Dict that determines node background colors from node types.
     var NodeType2BGColor = {
-        '-1': '#e5ffaa',
+        '-1': '#c1c1c1',
         '0': '#e5ffaa',
-        '1': '#0000aa',
+        '1': '#003c75',
         '2': '#aa00aa',
-        '3': '#e5ffaa',
-        '4': '#e5ffaa',
-        '5': '#e5ffaa',
-        '6': '#e5ffaa'
+        '3': '#c1c1c1',
+        '4': '#c1c1c1',
+        '5': '#00968e',
+        '6': '#c1c1c1'
     };
 
     // Dict that determines node highlight colors from node types.
@@ -175,7 +175,7 @@ function custom() {
         '2': '#ffffff',
         '3': '#000000',
         '4': '#000000',
-        '5': '#000000',
+        '5': '#ffffff',
         '6': '#000000'
     };
 
@@ -185,7 +185,7 @@ function custom() {
         "sub": false,
         "autosub": false,
         "obj": true,
-        "aux": false,
+        "aux": true,
         "cause": false,
         "coref": false,
         "synonym": false
@@ -193,14 +193,14 @@ function custom() {
 
     // Dict that determines edge style from edge types.
     var EdgeType2Color = {
-        "none": "#aaaaaa",
+        "none": "#909296",
         "sub": "#000000",
-        "autosub": "#aabbcc",
+        "autosub": "#ff7f30",
         "obj": "#000000",
-        "aux": "#550000",
-        "cause": "#00aaff",
-        "coref": "#00ff00",
-        "synonym": "#aaaa22"
+        "aux": "#f682ff",
+        "cause": "#e20416",
+        "coref": "#d4f738",
+        "synonym": "#fff200"
     };
 
     // Function that stylizes graph.
