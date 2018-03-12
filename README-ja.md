@@ -32,7 +32,7 @@ git clone https://github.com/superkerokero/naruhodo-viewer.git
 
 `naruhodo` に実装された試験的な共参照解析機能を利用するには、`wv` を word2vec のモデルにパスに変える必要があります。word2vec のモデルがなければ、"" のままで結構です。
 
-全ての使えるオプションは[オプション](#オプション)セクションで確認できます。
+全ての使えるオプションは[オプション](https://github.com/superkerokero/naruhodo-viewer/blob/master/README-ja.md#オプション)セクションで確認できます。
 
 次にルートフォルダに移動してターミナルを開き、このコマンドでウェブサーバーを起動します:
 

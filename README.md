@@ -31,7 +31,7 @@ If `mp` is set to `true`, `naruhodo` will be run in multiprocessing mode(may pro
 
 If you want to use experimental coreference resolution function in `naruhodo` based on word embeddings, you need to change `wv` to the string of your word2vec model path. Otherwise leave it as an empty string.
 
-A complete list of available config parameters and corresponding default values can be found in [config-parameters](#Config-parameters) section.
+A complete list of available config parameters and corresponding default values can be found in [config-parameters](https://github.com/superkerokero/naruhodo-viewer/blob/master/README.md#Config-parameters) section.
 
 Next, open a terminal from the root folder of the repository, and use the following command to start the web server:
 
