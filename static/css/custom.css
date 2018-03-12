@@ -19,7 +19,8 @@
 #langCtrl,
 #layoutCtrl,
 #gtypeCtrl,
-#resetBtn {
+#resetBtn,
+#rescaleBtn {
     visibility: hidden;
 }
 

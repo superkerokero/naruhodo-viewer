@@ -18,8 +18,8 @@ function custom() {
                 max: 50,
                 label: {
                     enabled: true,
-                    min: 5,
-                    max: 15,
+                    min: 10,
+                    max: 50,
                     maxVisible: 30,
                     drawThreshold: 5
                 },
@@ -33,11 +33,11 @@ function custom() {
             },
             scaling: {
                 min: 1,
-                max: 5,
+                max: 6,
                 label: {
                     enabled: true,
                     min: 5,
-                    max: 15,
+                    max: 30,
                     maxVisible: 30,
                     drawThreshold: 5
                 },
@@ -225,9 +225,9 @@ function custom() {
             };
             nodes.push({
                 'id': inp['nodes'][i]['id'],
-                'label': inp['nodes'][i]['label'],
+                'label': inp['nodes'][i]['label'].length > 10 ? inp['nodes'][i]['label'].slice(1, 5) + "..." : inp['nodes'][i]['label'],
                 'value': parseFloat(inp['nodes'][i]['count']),
-                'mass': parseFloat(inp['nodes'][i]['count']),
+                'mass': parseFloat(inp['nodes'][i]['count']) * 3.0,
                 'title': tsource,
                 'shape': NodeType2Style[inp['nodes'][i]['type']],
                 'color': {
@@ -389,6 +389,7 @@ function custom() {
     $("#setBtn").click(function() {
         if (configVisStatus) {
             $("#resetBtn").css("visibility", "hidden");
+            $("#rescaleBtn").css("visibility", "hidden");
             $("#gtypeCtrl").css("visibility", "hidden");
             $("#modeCtrl").css("visibility", "hidden");
             $("#langCtrl").css("visibility", "hidden");
@@ -396,6 +397,7 @@ function custom() {
             configVisStatus = false;
         } else {
             $("#resetBtn").css("visibility", "visible");
+            $("#rescaleBtn").css("visibility", "visible");
             $("#gtypeCtrl").css("visibility", "visible");
             $("#modeCtrl").css("visibility", "visible");
             $("#langCtrl").css("visibility", "visible");
@@ -429,6 +431,11 @@ function custom() {
     // Reset button callback.
     $('#resetBtn').on('click', function(event) {
         reset();
+    });
+
+    // Rescale button callback.
+    $('#rescaleBtn').on('click', function(event) {
+        network.fit();
     });
 
     // Toggle help button callback.
