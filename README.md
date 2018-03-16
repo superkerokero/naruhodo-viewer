@@ -10,7 +10,7 @@ A web application for interactive visualization of semantic graphs generated fro
 
 ## Installation
 
-First you need to install [naruhodo](https://github.com/superkerokero/naruhodo) and make sure it is working properly. For installation and setup of `naruhodo`, refer to this [link](https://github.com/superkerokero/naruhodo/blob/master/README.md#Installation).
+First you need to install **the latest version** of [naruhodo](https://github.com/superkerokero/naruhodo) and make sure it is working properly. For installation and setup of `naruhodo`, refer to this [link](https://github.com/superkerokero/naruhodo/blob/master/README.md#Installation).
 
 Then you need to clone this repository to your local disk:
 
@@ -47,21 +47,28 @@ http://localhost:8000
 
 ## Basic-Usage
 
-You can use the input bar to add contents to the graph.
+* You can use the input bar to add contents to the graph.
 
 ![Input bar](img/snapshot2.png)
 
-Use `Setting` button to toggle setting menu.
+* Use `Setting` button to toggle setting menu.
 
 ![Setting button](img/snapshot3.png)
 
-When you move your cursor over a node in the graph(or touch a node on mobile devices), a popup window will show you the original text that contains this node and its relative position in the input context.
+* When you move your cursor over a node in the graph(or touch a node on mobile   devices), a popup window will show you the original text that contains this node and its relative position in the input context.
 
 ![Node popup](img/snapshot4.png)
 
-You can also add contents of webpages into graph directly using `naruhodo`'s built-in scraper. But please be careful with large amount of texts, since too many nodes and edges in the graph will degrade the webapp's performance significantly.
+* You can also add contents of webpages into graph directly using `naruhodo`'s built-in scraper. But please be careful with large amount of texts, since too many nodes and edges in the graph will degrade the webapp's performance significantly.
 
 ![Webpage added to graph](img/snapshot5.png)
+
+* You can use clustering functions in the `setting` menu to cluster certain nodes together. A cluster node is repsented in a `database` shape like in the following snapshot. Currently 3 types of clustering are supported:
+  * Cluster by synonyms
+  * Cluster by coreferences
+  * Cluster by meaning(for meaningless stop words)
+
+![Clustering](img/snapshot6.png)
 
 ## Config-parameters
 
