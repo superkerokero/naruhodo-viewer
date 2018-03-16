@@ -10,7 +10,7 @@ A web application for interactive visualization of semantic graphs generated fro
 
 ## Installation
 
-First you need to install **the latest version** of [naruhodo](https://github.com/superkerokero/naruhodo) and make sure it is working properly. For installation and setup of `naruhodo`, refer to this [link](https://github.com/superkerokero/naruhodo/blob/master/README.md#Installation).
+First you need to install **the latest version** [![PyPI version](https://badge.fury.io/py/naruhodo.svg)](https://badge.fury.io/py/naruhodo) of [`naruhodo`](https://github.com/superkerokero/naruhodo) and make sure it is working properly. For installation and setup of [`naruhodo`](https://github.com/superkerokero/naruhodo), refer to this [link](https://github.com/superkerokero/naruhodo/blob/master/README.md#Installation).
 
 Then you need to clone this repository to your local disk:
 

@@ -10,7 +10,7 @@
 
 ## インストール
 
-まずは[naruhodo](https://github.com/superkerokero/naruhodo)をインストールする必要があります。 `naruhodo`のインストールに関する情報は [ここ](https://github.com/superkerokero/naruhodo/blob/master/README-ja.md#インストール)に載せています。
+まずは**最新バージョン**[![PyPI version](https://badge.fury.io/py/naruhodo.svg)](https://badge.fury.io/py/naruhodo)の[`naruhodo`](https://github.com/superkerokero/naruhodo)をインストールする必要があります。 [`naruhodo`](https://github.com/superkerokero/naruhodo)のインストールに関する情報は [ここ](https://github.com/superkerokero/naruhodo/blob/master/README-ja.md#インストール)に載せています。
 
 それからはこのリポジトリをローカルに`git clone`してください:
 
