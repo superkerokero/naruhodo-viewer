@@ -64,6 +64,15 @@ http://localhost:8000
 
 ![Webpage added to graph](img/snapshot5.png)
 
+* `setting` メニューの `Clustering` でクラスタリング機能が利用できます。クラスターのノードは次のスナップショットのように、 `database` の形で表示されます。クラスターのノードをクリックすればクラスターを開放できます。いまは三種類のクラスタリングがサポートされています：
+  * Cluster by synonyms　（同義語でクラスタリング）
+  * Cluster by coreferences　（共参照先でクラスタリング）
+  * Cluster by meaning　（意味のない単語の意味でクラスタリング）
+* `ClusterAll` と `OpenAll` ボタンを利用すれば一気に全部のクラスターを生成・開放できます。
+
+![Clustering](img/snapshot6.png)
+
+
 ## オプション
 
 | name        | default            | description                                 |

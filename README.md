@@ -63,10 +63,11 @@ http://localhost:8000
 
 ![Webpage added to graph](img/snapshot5.png)
 
-* You can use clustering functions in the `setting` menu to cluster certain nodes together. A cluster node is repsented in a `database` shape like in the following snapshot. Currently 3 types of clustering are supported:
+* You can use clustering functions in the `setting` menu to cluster certain nodes together. A cluster node is repsented in a `database` shape like in the following snapshot. You can open a cluster by clicking the cluster node. Currently 3 types of clustering are supported:
   * Cluster by synonyms
   * Cluster by coreferences
   * Cluster by meaning(for meaningless stop words)
+* You can also use `ClusterAll` and `OpenAll` buttons to cluster or open all available clustering types at once.
 
 ![Clustering](img/snapshot6.png)
 
