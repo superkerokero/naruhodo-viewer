@@ -27,7 +27,10 @@ class ViewerHandler(tornado.web.RequestHandler):
             texts = gclient.addUrls(data['inp'])
         else:
             raise ValueError("Unrecognized mode: {0}".format(data['mode']))
-        response = gclient.exportObj(texts)
+        response = gclient.exportObj()
+        response['texts'] = texts
+        response['corefList'] = list(gclient.corefDict)
+        response['synonymList'] = list(gclient.synonymDict)
         self.write(json.dumps(response))
 
 class Application(tornado.web.Application):

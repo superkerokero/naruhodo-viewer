@@ -17,10 +17,12 @@
 
 #modeCtrl,
 #langCtrl,
+#clusterCtrl,
 #layoutCtrl,
 #gtypeCtrl,
 #resetBtn,
-#rescaleBtn {
+#rescaleBtn,
+#stableBtn {
     visibility: hidden;
 }
 

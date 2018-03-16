@@ -75,6 +75,20 @@
                             <button type="button" id="layoutCtrl-hierarchical" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Hierarchical layout" data-content="Click here to change the layout mode of the graph to 'Hierarchical'." data-placement="auto">Hierarchical</button>
                         </div>
                     </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="clusterCtrl" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Clustering
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="clusterCtrl">
+                            <button type="button" id="clusterCtrl-synonym" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Cluster by synonym" data-content="Click here to cluster nodes that are in the same synonym group." data-placement="auto">Synonym</button>
+                            <button type="button" id="clusterCtrl-coreference" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Cluster by coreference" data-content="Click here to cluster nodes that share the same coreference antecedent." data-placement="auto">Coreference</button>
+                            <button type="button" id="clusterCtrl-meaningless" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Cluster by meaningless" data-content="Click here to cluster nodes that points to meaningless nodes into the meaningless nodes."
+                                data-placement="auto">Meaningless</button>
+                            <button type="button" id="clusterCtrl-clusterall" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Make all clusters" data-content="Click here to make all available clusters at once." data-placement="auto">ClusterAll</button>
+                            <button type="button" id="clusterCtrl-openall" class="dropdown-item btn" data-toggle="popover" data-trigger="hover" title="Open all clusters" data-content="Click here to open all clusters at once." data-placement="auto">OpenAll</button>
+                        </div>
+                    </div>
+                    <button type="button" id="stableBtn" class="btn btn-secondary" data-toggle="popover" data-trigger="hover" title="Stablize button" data-content="Click here to stablize the graph(may take several minutes depending on the size of the graph)." data-placement="auto">Stablize</button>
                     <button type="button" id="rescaleBtn" class="btn btn-secondary" data-toggle="popover" data-trigger="hover" title="Rescale button" data-content="Click here to rescale the graph to fit screen size." data-placement="auto">Rescale</button>
                     <button type="button" id="resetBtn" class="btn btn-secondary" data-toggle="popover" data-trigger="hover" title="Reset button" data-content="Click here to reset the graph. This will clear all contents in the graph viewer." data-placement="auto">Reset</button>
                     <button type="button" id="setBtn" class="btn btn-light" data-toggle="popover" data-trigger="hover" title="Setting button" data-content="Click here to toggle settings memu." data-placement="auto">Settings</button>

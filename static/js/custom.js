@@ -5,6 +5,9 @@ function custom() {
     };
 
     var texts = [];
+    var corefList = [];
+    var synonymList = [];
+    var clusters = [];
     var help = true;
 
     // takes in a json object, and initialize the network.
@@ -18,7 +21,7 @@ function custom() {
                 max: 50,
                 label: {
                     enabled: true,
-                    min: 10,
+                    min: 5,
                     max: 50,
                     maxVisible: 30,
                     drawThreshold: 5
@@ -36,7 +39,7 @@ function custom() {
                 max: 6,
                 label: {
                     enabled: true,
-                    min: 5,
+                    min: 10,
                     max: 30,
                     maxVisible: 30,
                     drawThreshold: 5
@@ -109,9 +112,6 @@ function custom() {
 
     // initialize your network!
     var network = new vis.Network(container, data, options);
-    network.addEventListener('afterDrawing', function() {
-        $("#loadingCard").css("visibility", "hidden");
-    });
 
     // Update graph using new graph data.
     function updateGraph(nodes, edges) {
@@ -188,7 +188,10 @@ function custom() {
         "aux": true,
         "cause": false,
         "coref": false,
-        "synonym": false
+        "synonym": false,
+        "para": false,
+        "attr": true,
+        "stat": false
     };
 
     // Dict that determines edge style from edge types.
@@ -200,7 +203,10 @@ function custom() {
         "aux": "#f682ff",
         "cause": "#e20416",
         "coref": "#d4f738",
-        "synonym": "#fff200"
+        "synonym": "#fff200",
+        "para": "#207272",
+        "attr": "#7738ff",
+        "stat": "#66aaee"
     };
 
     // Function that stylizes graph.
@@ -225,10 +231,10 @@ function custom() {
             };
             nodes.push({
                 'id': inp['nodes'][i]['id'],
-                'label': inp['nodes'][i]['label'].length > 10 ? inp['nodes'][i]['label'].slice(1, 5) + "..." : inp['nodes'][i]['label'],
+                'label': inp['nodes'][i]['label'].length > 10 ? inp['nodes'][i]['label'].slice(0, 5) + "..." : inp['nodes'][i]['label'],
                 'value': parseFloat(inp['nodes'][i]['count']),
                 'mass': parseFloat(inp['nodes'][i]['count']) * 3.0,
-                'title': tsource,
+                'title': inp['nodes'][i]['id'] == "未知の主体" ? "未知の主体" : tsource,
                 'shape': NodeType2Style[inp['nodes'][i]['type']],
                 'color': {
                     'background': NodeType2BGColor[inp['nodes'][i]['type']],
@@ -237,7 +243,10 @@ function custom() {
                 },
                 'font': {
                     'color': NodeType2FontColor[inp['nodes'][i]['type']]
-                }
+                },
+                'type': inp['nodes'][i]['type'],
+                'meaning': inp['nodes'][i]['meaning'],
+                'synonym': inp['nodes'][i].hasOwnProperty('synonym') ? inp['nodes'][i]['synonym'] : ""
             });
         };
         for (let i = 0; i < inp['links'].length; i++) {
@@ -250,7 +259,8 @@ function custom() {
                 'value': parseFloat(inp['links'][i]['weight']),
                 'title': inp['links'][i]['type'],
                 'dashes': EdgeType2Style[inp['links'][i]['type']],
-                'color': EdgeType2Color[inp['links'][i]['type']]
+                'color': EdgeType2Color[inp['links'][i]['type']],
+                'type': inp['links'][i]['type']
             });
         };
         return [nodes, edges];
@@ -275,12 +285,15 @@ function custom() {
             success: function(data) {
                 let g = stylizeGraph(data);
                 updateGraph(g[0], g[1]);
+                clusterOpenAll();
                 if (!reset) {
                     $("#loadingCard").css("visibility", "visible");
+                    corefList = data['corefList'];
+                    synonymList = data['synonymList'];
                 };
             },
             error: function(data) {
-                console.log(data);
+                alert("Server returned a 500 internal error!");
             }
         });
     };
@@ -390,18 +403,22 @@ function custom() {
         if (configVisStatus) {
             $("#resetBtn").css("visibility", "hidden");
             $("#rescaleBtn").css("visibility", "hidden");
+            $("#stableBtn").css("visibility", "hidden");
             $("#gtypeCtrl").css("visibility", "hidden");
             $("#modeCtrl").css("visibility", "hidden");
             $("#langCtrl").css("visibility", "hidden");
             $("#layoutCtrl").css("visibility", "hidden");
+            $("#clusterCtrl").css("visibility", "hidden");
             configVisStatus = false;
         } else {
             $("#resetBtn").css("visibility", "visible");
             $("#rescaleBtn").css("visibility", "visible");
+            $("#stableBtn").css("visibility", "visible");
             $("#gtypeCtrl").css("visibility", "visible");
             $("#modeCtrl").css("visibility", "visible");
             $("#langCtrl").css("visibility", "visible");
             $("#layoutCtrl").css("visibility", "visible");
+            $("#clusterCtrl").css("visibility", "visible");
             configVisStatus = true;
         };
     });
@@ -415,11 +432,147 @@ function custom() {
             edges: new vis.DataSet()
         };
         network = new vis.Network(container, data, options);
-        network.addEventListener('afterDrawing', function() {
+        network.addEventListener("afterDrawing", function() {
             $("#loadingCard").css("visibility", "hidden");
+        });
+        // Enable cluster opening operation.
+        network.addEventListener("selectNode", function(params) {
+            if (params.nodes.length == 1) {
+                if (network.isCluster(params.nodes[0]) == true) {
+                    network.openCluster(params.nodes[0]);
+                    clusters.splice(clusters.indexOf(params.nodes[0]), 1);
+                }
+            }
         });
         sendAction(inp, gtype, mode, lang, true);
     };
+
+    //Open all clusters
+    function clusterOpenAll() {
+        for (let i = 0; i < clusters.length; i++) {
+            network.openCluster(clusters[i]);
+        }
+        clusters = [];
+    };
+
+    //Make all clusters
+    function clusterAll() {
+        clusterByCoreference();
+        clusterBySynonym();
+        clusterByMeaningless();
+    };
+
+    // Cluster by coreference
+    function clusterByCoreference() {
+        // Cluster noun nodes with synonym children
+        for (var nid in corefList) {
+            let parent = data['nodes'].get(corefList[nid]);
+            let options = {
+                joinCondition: function(parentNodeOptions, childNodeOptions) {
+                    let edge = data['edges'].get(parentNodeOptions.id + "--" + childNodeOptions.id);
+                    return edge === null ? false : edge.type === "coref";
+                },
+                processProperties: function(clusterOptions, childNodes, childEdges) {
+                    clusterOptions.color = "#51b2e8";
+                    clusterOptions.shape = "database";
+                    clusterOptions.mass = parent.mass;
+                    clusterOptions.value = parent.value;
+                    return clusterOptions;
+                },
+                clusterNodeProperties: {
+                    id: 'clscoref:' + parent.id,
+                    label: parent.label,
+                    title: "<font color=#51b2e8>Resolved Coreference:</font><BR>" + parent.label
+                }
+            };
+            network.clusterByConnection(corefList[nid], options);
+            clusters.push('clscoref:' + parent.id);
+        };
+    };
+
+    // Cluster by synonym
+    function clusterBySynonym() {
+        // Cluster noun nodes with synonym children
+        for (var nid in synonymList) {
+            let parent = data['nodes'].get(synonymList[nid]);
+            let options = {
+                joinCondition: function(nodeOptions) {
+                    return nodeOptions.synonym === parent.id;
+                },
+                processProperties: function(clusterOptions, childNodes, childEdges) {
+                    let totalMass = 0;
+                    let totalValue = 0;
+                    for (let i = 0; i < childNodes.length; i++) {
+                        totalMass += childNodes[i].mass;
+                        totalValue += childNodes[i].value;
+                    }
+                    clusterOptions.mass = totalMass;
+                    clusterOptions.value = totalValue;
+                    clusterOptions.color = "#ffc876";
+                    clusterOptions.shape = "database";
+                    return clusterOptions;
+                },
+                clusterNodeProperties: {
+                    id: 'clssynonym:' + parent.id,
+                    label: parent.label,
+                    title: "<font color=#db4437>Root Synonym:</font><BR>" + parent.label
+                }
+            };
+            network.cluster(options);
+            clusters.push('clssynonym:' + parent.id);
+        };
+    };
+
+    // Cluster by meaningless
+    function clusterByMeaningless() {
+        // Get all noun nodes
+        let nodes = data['nodes'].get({
+            filter: function(item) {
+                return item.meaning !== "";
+            }
+        });
+        // Cluster noun nodes with synonym children
+        for (var nid in nodes) {
+            let parent = nodes[nid];
+            let options = {
+                joinCondition: function(parentNodeOptions, childNodeOptions) {
+                    let meaning = childNodeOptions.id.replace(/ *\[[^)]*\] */g, "").replace("\n", "");
+                    return meaning === parentNodeOptions.meaning;
+                },
+                processProperties: function(clusterOptions, childNodes, childEdges) {
+                    clusterOptions.color = "#aacc14";
+                    clusterOptions.shape = "database";
+                    clusterOptions.mass = parent.mass;
+                    clusterOptions.value = parent.value;
+                    return clusterOptions;
+                },
+                clusterNodeProperties: {
+                    id: 'clsmeaning:' + parent.id,
+                    label: parent.label,
+                    title: "<font color=#00cc14>Meaning:</font><BR>" + parent.meaning
+                }
+            };
+            network.clusterByConnection(nodes[nid].id, options);
+            clusters.push('clsmeaning:' + parent.id);
+        };
+    };
+
+    //Add clustering buttons' callbacks.
+    $('#clusterCtrl-clusterall').on('click', function(event) {
+        clusterAll();
+    });
+    $('#clusterCtrl-openall').on('click', function(event) {
+        clusterOpenAll();
+    });
+    $('#clusterCtrl-coreference').on('click', function(event) {
+        clusterByCoreference();
+    });
+    $('#clusterCtrl-synonym').on('click', function(event) {
+        clusterBySynonym();
+    });
+    $('#clusterCtrl-meaningless').on('click', function(event) {
+        clusterByMeaningless();
+    });
 
     // Add button callback.
     $('#addBtn').on('click', function(event) {
@@ -436,6 +589,11 @@ function custom() {
     // Rescale button callback.
     $('#rescaleBtn').on('click', function(event) {
         network.fit();
+    });
+
+    // Stablize button callback.
+    $('#stableBtn').on('click', function(event) {
+        network.stabilize();
     });
 
     // Toggle help button callback.
