@@ -450,7 +450,11 @@ function custom() {
     //Open all clusters
     function clusterOpenAll() {
         for (let i = 0; i < clusters.length; i++) {
-            network.openCluster(clusters[i]);
+            try {
+                network.openCluster(clusters[i]);
+            } catch (err) {
+                console.error(err);
+            }
         }
         clusters = [];
     };
