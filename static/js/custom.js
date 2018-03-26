@@ -227,7 +227,7 @@ function custom() {
         for (let i = 0; i < inp['nodes'].length; i++) {
             let tsource = "";
             for (let j = 0; j < inp['nodes'][i]['pos'].length; j++) {
-                tsource += "<font color='blue'>No." + inp['nodes'][i]['pos'][j] + ": </font>" + texts[inp['nodes'][i]['pos'][j]].replace(inp['nodes'][i]['surface'][j], "<strong><font color='red'>" + inp['nodes'][i]['surface'][j] + "</font></strong>") + "<BR>";
+                tsource += "<font color='blue'>No." + inp['nodes'][i]['pos'][j] + ": </font>" + texts[inp['nodes'][i]['pos'][j]].replace(new RegExp(inp['nodes'][i]['surface'][j], 'g'), "<strong><font color='red'>" + inp['nodes'][i]['surface'][j] + "</font></strong>") + "<BR>";
             };
             nodes.push({
                 'id': inp['nodes'][i]['id'],
