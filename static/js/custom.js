@@ -21,7 +21,7 @@ function custom() {
                 max: 50,
                 label: {
                     enabled: true,
-                    min: 5,
+                    min: 10,
                     max: 50,
                     maxVisible: 30,
                     drawThreshold: 5
@@ -42,7 +42,7 @@ function custom() {
                     min: 10,
                     max: 30,
                     maxVisible: 30,
-                    drawThreshold: 5
+                    drawThreshold: 15
                 },
             },
         },
@@ -231,7 +231,7 @@ function custom() {
             };
             nodes.push({
                 'id': inp['nodes'][i]['id'],
-                'label': inp['nodes'][i]['label'].length > 10 ? inp['nodes'][i]['label'].slice(0, 5) + "..." : inp['nodes'][i]['label'],
+                'label': inp['nodes'][i]['label'].length > 10 ? inp['nodes'][i]['label'].slice(0, 10) + "..." : inp['nodes'][i]['label'],
                 'value': parseFloat(inp['nodes'][i]['count']),
                 'mass': parseFloat(inp['nodes'][i]['count']) * 3.0,
                 'title': inp['nodes'][i]['id'] == "未知の主体" ? "未知の主体" : tsource,

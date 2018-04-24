@@ -66,12 +66,14 @@ def loadConfig(fname):
         cfg['server_port'] = 8000
     if 'coref' not in cfg:
         cfg['coref'] = True
+    if 'synonym' not in cfg:
+        cfg['synonym'] = True
     return cfg
 
 if __name__ == '__main__':
     cfg = loadConfig(sys.argv[1])
     app = Application(cfg['debug'])
-    gclient = parser(mp=cfg['mp'], wv=cfg['wv'], coref=cfg['coref'])
+    gclient = parser(mp=cfg['mp'], wv=cfg['wv'], coref=cfg['coref'], synonym=cfg['synonym'])
     server = tornado.httpserver.HTTPServer(app)
     server.listen(cfg['server_port'])
     tornado.ioloop.IOLoop.instance().start()

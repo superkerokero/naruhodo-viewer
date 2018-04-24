@@ -80,5 +80,7 @@ http://localhost:8000
 | mp          | false              | Use multiprocessing in naruhodo or not.     |
 | wv          | ""                 | Path to your word2vec model.                |
 | debug       | false              | Debug mode                                  |
+| coref       | true              | Show coreferences   |
+| synonym     | true              | Show synonyms       |
 | server_ip   | "http://localhost" | IP address of your naruhodo-viewer server.  |
 | server_port | 8000               | Port number of your naruhodo-viewer server. |
